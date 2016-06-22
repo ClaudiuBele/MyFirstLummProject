@@ -15,6 +15,7 @@ import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
 import com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20;
 import com.badlogic.gdx.backends.android.surfaceview.RatioResolutionStrategy;
 import com.sidereal.lumm.architecture.Lumm;
+import com.sidereal.lumm.architecture.LummConfiguration;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
@@ -27,7 +28,13 @@ public class AndroidLauncher extends AndroidApplication {
 		config.resolutionStrategy = new FillResolutionStrategy();
 		config.r = config.g = config.b = config.a = 8;
 		
-		initialize( new Lumm(new GameScreen()),config);
+		
+		LummConfiguration lConfig = new LummConfiguration();
+		lConfig.debugEnabled = true;
+		lConfig.applicationLNetKey = "ZCDV3GMJYT58Y32CCYDR8DABX";
+		lConfig.applicationVersion = "0.1.2";
+		lConfig.startDebugLogOnStartup = true;
+		initialize( new Lumm(new GameScreen(),lConfig),config);
 		
 //		// inflate layout
 //		setContentView(R.layout.activity_main);
@@ -39,7 +46,7 @@ public class AndroidLauncher extends AndroidApplication {
 //		// make Surface View and add it to the proper View
 //		View view = initializeForView(new Lumm(new GameScreen()), config);
 ////		makeSurfaceViewTransparent((GLSurfaceView20) view);
-//		view.setLayoutParams(params);
+//		view.setLayoutPDarams(params);
 //		((ViewGroup) lummRoot).addView(view);
 //		
 //		// just making some views to add to a listView to see if it works
@@ -58,7 +65,7 @@ public class AndroidLauncher extends AndroidApplication {
 	// this also makes the surface to ALWAYS be rendered on top of any other views, so it should be used only for things like overlays 
 	private void makeSurfaceViewTransparent(GLSurfaceView20 view)
 	{
-//		view.getHolder().setFormat(PixelFormat.TRANSLUCENT);
-//		view.setZOrderOnTop(true);
+		view.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+		view.setZOrderOnTop(true);
 	}
 }
